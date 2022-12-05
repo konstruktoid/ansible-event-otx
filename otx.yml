@@ -1,0 +1,13 @@
+---
+- name: otx events
+  hosts: all
+  sources:
+    - name: Match all messages
+      ansible.eda.otx:
+        count: "1"
+  rules:
+    - name: Send to playboox
+      condition: event.otx is defined
+      action:
+        run_playbook:
+          name: otx_ufw.yml
