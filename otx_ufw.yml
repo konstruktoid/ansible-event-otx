@@ -1,0 +1,10 @@
+---
+- name: otx events
+  hosts: all
+  tasks:
+    - name: Deny OTX indicator address
+      become: true
+      community.general.ufw:
+        rule: deny
+        src: '{{ event.otx.ip }}'
+        comment: "ansible managed - OTX indicator"
