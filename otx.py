@@ -1,5 +1,25 @@
 #!/usr/bin/python3
-""" Stream subscribed OTX events. """
+"""
+Stream subscribed OTX events.
+
+Arguments:
+    count: minimum count of related pulses that is required for the
+        IP to be added to the blocklist.
+
+Example playbook:
+    - name: otx events
+      hosts: all
+      sources:
+        - name: Match all messages
+          ansible.eda.otx:
+            count: "1"
+      rules:
+        - name: Send to playboox
+          condition: event.otx is defined
+          action:
+            run_playbook:
+              name: otx_ufw.yml
+"""
 
 import os
 import datetime
