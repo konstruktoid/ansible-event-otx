@@ -7,16 +7,19 @@ event source.
 
 ## Quickstart
 
+If you prefer working with Fedora, replace `ubuntu` with `fedora` in the code
+block below.
+
 ```sh
-vagrant up
-vagrant ssh
+vagrant up ubuntu
+vagrant ssh ubuntu
 git clone https://github.com/ansible/event-driven-ansible.git
-cp /vagrant/otx.py event-driven-ansible/plugins/event_source/
 cd event-driven-ansible || exit 1
 ansible-galaxy collection install --force .
-cp /vagrant/*.yml .
+cd .. || exit 1
 export OTX_APIKEY="YOUR_OTX_APIKEY"
-ansible-rulebook --inventory inventory --rulebook otx.yml
+cp /vagrant/*.yml .
+ansible-rulebook --inventory inventory --rulebook otx.yml --source-dir /vagrant/
 ```
 
 ## Structure

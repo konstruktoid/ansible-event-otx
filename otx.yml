@@ -3,7 +3,7 @@
   hosts: all
   sources:
     - name: Match all messages
-      ansible.eda.otx:
+      otx:
         count: "1"
   rules:
     - name: Send to playboox

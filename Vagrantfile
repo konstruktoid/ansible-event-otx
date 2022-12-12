@@ -10,8 +10,18 @@ export PIP_NO_BINARY=jpy
 export PATH=\$PATH:~/.local/bin
 " >> /home/vagrant/.profile
 
+echo "---
+ungrouped:
+  hosts:
+    localhost:
+      ansible_host: 127.0.0.1
+  vars:
+    ansible_connection: local" > /home/vagrant/inventory
+
+chown vagrant:vagrant /home/vagrant/inventory
+
 sudo -i -u vagrant pip3 install -U Jinja2
-sudo -i -u vagrant pip3 install ansible ansible-rulebook ansible-runner wheel
+sudo -i -u vagrant pip3 install ansible ansible-rulebook ansible-runner OTXv2 wheel
 UBUNTU
 
 $fedora_script = <<-'FEDORA'
@@ -24,8 +34,18 @@ export JAVA_HOME=\$JDK_HOME
 export PIP_NO_BINARY=jpy
 " >> /home/vagrant/.bashrc
 
+echo "---
+ungrouped:
+  hosts:
+    localhost:
+      ansible_host: 127.0.0.1
+  vars:
+    ansible_connection: local" > /home/vagrant/inventory
+
+chown vagrant:vagrant /home/vagrant/inventory
+
 sudo -i -u vagrant pip3 install -U Jinja2
-sudo -i -u vagrant pip3 install ansible ansible-rulebook ansible-runner wheel
+sudo -i -u vagrant pip3 install ansible ansible-rulebook ansible-runner OTXv2 wheel
 FEDORA
 
 Vagrant.configure("2") do |config|
